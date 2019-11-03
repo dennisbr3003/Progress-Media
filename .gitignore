@@ -1,0 +1,16 @@
+# Progress compiled files
+
+/Client/*.r
+/Hooks/*.r
+/Server/*.r
+.setti*
+
+# project files
+
+.project
+.classpath
+.dbconnection
+.propath
+assemblies*
+toolbox*
+
