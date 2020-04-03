@@ -14,11 +14,11 @@
   /* quick-dump */
 
   DEF VAR iCounter AS INT NO-UNDO INIT 1.
-  DEF VAR cTargetPath AS CHAR NO-UNDO INIT "D:\Media\DMP\".
+  DEF VAR cTargetPath AS CHAR NO-UNDO INIT "C:\Data\Media2015\Work\Dump\".
   DEF VAR cTempFileName AS CHAR NO-UNDO.
   DEF VAR cFullTargetName AS CHAR NO-UNDO.
   DEF VAR cLibraryName AS CHAR NO-UNDO INIT "". 
-  DEF VAR iCollectionNumber AS INT NO-UNDO INIT 113. 
+  DEF VAR iCollectionNumber AS INT NO-UNDO INIT 249. 
   
   FOR EACH MediaIndex.CollectionFileIndex WHERE MediaIndex.CollectionFileIndex.iCollectionNumber =  iCollectionNumber NO-LOCK:
       /* iFileNameKey */
@@ -26,6 +26,7 @@
       IF AVAIL Media2015.CollectionFiles THEN DO:
         ASSIGN cTempFileName = MediaIndex.CollectionFileIndex.cFileName + "-" + STRING(MediaIndex.CollectionFileIndex.iCollectionNumber) + "." + STRING(iCounter, "999999") + ".jpg".                             
                cFullTargetName = cTargetPath + cTempFileName.
+               
         COPY-LOB FROM Media2015.CollectionFiles.blbFile TO FILE cFullTargetName.  
         ASSIGN iCounter = iCounter + 1.            
       END.      
